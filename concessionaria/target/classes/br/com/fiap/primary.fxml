@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="br.com.fiap.PrimaryController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fiap.PrimaryController">
   <tabs>
     <Tab text="Cadastro">
          <content>
@@ -42,7 +42,7 @@
                   <TextField fx:id="textFieldAno" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="textFieldPreço" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <TextField fx:id="textFieldPlaca" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Button alignment="BASELINE_RIGHT" mnemonicParsing="false" style="-fx-background-color: black;" text="Salvar" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Button alignment="BASELINE_RIGHT" mnemonicParsing="false" onAction="#salvar" style="-fx-background-color: black;" text="Salvar" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                </children>
                <padding>
                   <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
@@ -59,6 +59,8 @@
                   <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <items>
                       <Button mnemonicParsing="false" text="Listar Todos" />
+                        <Button mnemonicParsing="false" onAction="#ordenarPorPreco" text="Listar por Preço " />
+                        <Button mnemonicParsing="false" onAction="#ordenarPorAno" text="Listar por Ano" />
                     </items>
                   </ToolBar>
                </top>

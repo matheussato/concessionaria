@@ -4,9 +4,12 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
+import javax.swing.Icon;
 
 /**
  * JavaFX App
@@ -19,6 +22,9 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("primary"), 640, 480);
         stage.setScene(scene);
+        stage.setTitle("Concessionária");
+        Image icon = new Image("file:src/main/resources/br/com/fiap/icons/favicon-32x32.png");
+        stage.getIcons().add(icon);
         stage.show();
     }
 

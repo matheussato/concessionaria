@@ -1,6 +1,6 @@
 package br.com.fiap;
 
-public class Veiculo {
+public class Veiculo implements Comparable<Veiculo>{
     // BO BEAN Model POJO Entity Resource
     private String marca;
     private String modelo;
@@ -49,8 +49,14 @@ public class Veiculo {
 
     @Override
     public String toString() {
-        return "Veiculo [ano=" + ano + ", marca=" + marca + ", modelo=" + modelo + ", placa=" + placa + ", preco="
-                + preco + "]";
+        return marca + " " + modelo + " " + "(" + ano + ") " + " - " + preco;
+        
+    }
+
+    @Override
+    public int compareTo(Veiculo outro) {
+        return Integer.compare(this.ano, outro.getAno());
+       
     }
 
     
