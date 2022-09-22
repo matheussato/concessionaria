@@ -22,7 +22,7 @@ public class PrimaryController {
     
     private VeiculoDao veiculoDao; 
 
-    private PrimaryController(){
+    public PrimaryController(){
         try {
             veiculoDao = new VeiculoDao();
         } catch (SQLException e) {

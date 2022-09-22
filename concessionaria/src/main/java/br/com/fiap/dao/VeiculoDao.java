@@ -2,6 +2,7 @@ package br.com.fiap.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,27 +19,30 @@ public class VeiculoDao {
     private Connection con; 
 
     public VeiculoDao() throws SQLException{
-        con = DriverManager.getConnection(url, username, password);
+        // con = DriverManager.getConnection(url, username, password);
 
     }
 
     public void inserir(Veiculo veiculo) throws SQLException{
-        
-            Statement stm = con.createStatement();
-            String sql = String.format("INSERT INTO DDD_CONC_TB_VEICULOS (id, marca, modelo, ano, preco, placa) "
-            + "VALUES(SEQ_VEICULOS.nextval, '%s', '%s', %s , '%s', '%s')",
-            veiculo.getMarca(),
-            veiculo.getModelo(),
-            veiculo.getAno(),
-            veiculo.getPreco(),
-            veiculo.getPlaca());
+        con = DriverManager.getConnection(url, username, password);
 
-        stm.execute(sql);
+        String sql = "INSERT INTO DDD_CONC_TB_VEICULOS (id, marca, modelo, ano, preco, placa) "
+        + "VALUES(SEQ_VEICULOS.nextval, ?, ?, ? , ?, ?)";
+        
+        PreparedStatement stm = con.prepareStatement(sql);
+        stm.setString(1,veiculo.getMarca());
+        stm.setString(2,veiculo.getModelo());
+        stm.setInt(3,veiculo.getAno());
+        stm.setDouble(4,veiculo.getPreco());
+        stm.setString(5,veiculo.getPlaca());
+
+        stm.execute();
         con.close();
     }
 
     public List<Veiculo> listarTodos() throws SQLException{
         List<Veiculo> lista = new ArrayList<>();
+        con = DriverManager.getConnection(url, username, password);
         
         
             
@@ -64,6 +68,7 @@ public class VeiculoDao {
     
     public List<Veiculo> buscarPorMarca(String marca) throws SQLException{
               List<Veiculo> lista = new ArrayList<>();
+              con = DriverManager.getConnection(url, username, password);
               Statement stm = con.createStatement();
               String sql = "SELECT * FROM DDD_CONC_TB_VEICULOS WHERE marca='" + marca + "'";
               ResultSet resultado = stm.executeQuery(sql);
@@ -75,10 +80,11 @@ public class VeiculoDao {
                     resultado.getDouble("preco"),
                     resultado.getString("placa")
                 );
-                lista.add(Veiculo);
+                lista.add(veiculo);
                 
               }
               con.close();
+              return lista;
      
     }
 }
